@@ -1,5 +1,5 @@
-import QueryClientProvider from "./modules/react-query/providers/QueryClientProvider";
-import RouterProvider from "./modules/routing/providers/RouterProvider";
+import QueryClientProvider from "./modules/configuration/react-query/providers/QueryClientProvider";
+import RouterProvider from "./modules/configuration/routing/providers/RouterProvider";
 
 export function App() {
   return (

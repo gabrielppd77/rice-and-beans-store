@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useGetStoreData } from "../data/hooks/useGetStoreData";
 
@@ -11,12 +11,9 @@ import {
   User,
 } from "lucide-react";
 
-import { PositionIndicator } from "./components/PositionIndicator";
-import { NavControls } from "./components/NavControls";
+import { Information } from "./components/Information";
 
 export function StoreMain() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
   const containerRef = useRef<HTMLDivElement>(null);
   const paramsPage = useParams<{ companyPath: string }>();
   const { data, isLoading, isFetching } = useGetStoreData({
@@ -25,16 +22,7 @@ export function StoreMain() {
 
   const products = data?.products || [];
 
-  const handleScroll = () => {
-    if (containerRef.current) {
-      const scrollTop = containerRef.current.scrollTop;
-      const itemHeight = containerRef.current.clientHeight;
-      const newIndex = Math.round(scrollTop / itemHeight);
-      setCurrentIndex(newIndex);
-    }
-  };
-
-  const scrollToImage = (index: number) => {
+  const scrollToProduct = (index: number) => {
     if (containerRef.current) {
       const itemHeight = containerRef.current.clientHeight;
       containerRef.current.scrollTo({
@@ -43,14 +31,6 @@ export function StoreMain() {
       });
     }
   };
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener("scroll", handleScroll);
-      return () => container.removeEventListener("scroll", handleScroll);
-    }
-  }, []);
 
   return (
     <main className="flex h-screen w-full flex-col bg-black">
@@ -76,16 +56,12 @@ export function StoreMain() {
 
               {/* Conteúdo sobreposto */}
               <div className="absolute right-0 bottom-0 left-0 p-4 text-white">
-                <div className="flex items-end justify-between">
-                  {/* Informações da imagem */}
-                  <div className="flex-1 pr-4">
-                    <h3 className="mb-2 text-lg font-semibold">
-                      {product.name}
-                    </h3>
-                    <div className="flex items-center gap-4 text-sm text-white/80">
-                      <span>999 curtidas</span>
-                      <span>{product.description} comentários</span>
-                    </div>
+                <div className="flex items-end justify-between gap-4">
+                  <div className="flex-1">
+                    <Information
+                      title={product.name}
+                      description={product.description || ""}
+                    />
                   </div>
 
                   {/* Botões de ação */}
@@ -124,7 +100,7 @@ export function StoreMain() {
           <div className="flex items-center justify-between px-2 py-2">
             <div
               className="flex items-center gap-2"
-              onClick={() => scrollToImage(0)}
+              onClick={() => scrollToProduct(0)}
             >
               <img
                 src="rice-and-beans-logo.svg"
@@ -137,19 +113,6 @@ export function StoreMain() {
             <Search className="text-white" />
           </div>
         </div>
-
-        <PositionIndicator
-          currentIndex={currentIndex}
-          list={products}
-          // todo: improve list prop, have to received the length of list
-        />
-
-        <NavControls
-          currentIndex={currentIndex}
-          listLength={products.length}
-          scrollToImage={scrollToImage}
-          //todo: improve name of props
-        />
       </div>
 
       <div className="flex h-16 flex-col">

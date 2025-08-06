@@ -78,28 +78,16 @@ export function Product({
 
           {/* Botões de ação */}
           <div className="flex flex-col gap-4">
-            <button
-              // variant="ghost"
-              // size="icon"
-              className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30"
-            >
-              <MessageCircle className="h-6 w-6 text-white" />
+            <button className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30">
+              <MessageCircle className="h-6 w-full text-white" />
             </button>
 
-            <button
-              // variant="ghost"
-              // size="icon"
-              className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30"
-            >
-              <Share className="h-6 w-6 text-white" />
+            <button className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30">
+              <Share className="h-6 w-full text-white" />
             </button>
 
-            <button
-              // variant="ghost"
-              // size="icon"
-              className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30"
-            >
-              <Bookmark className="h-6 w-6 text-white" />
+            <button className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30">
+              <Bookmark className="h-6 w-full text-white" />
             </button>
           </div>
         </div>

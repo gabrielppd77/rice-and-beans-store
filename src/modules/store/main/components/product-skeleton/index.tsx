@@ -1,17 +1,14 @@
-import { Bookmark, MessageCircle, Share, Store } from "lucide-react";
+import { Bookmark, Image, Store } from "lucide-react";
 
 export function ProductSkeleton() {
   return (
     <div className="relative flex h-full w-full snap-start snap-always items-center justify-center">
-      {/* Imagem de fundo */}
-      <div className="absolute inset-0 flex h-full w-full animate-pulse items-center justify-center object-cover">
-        <Store className="h-2/3 min-h-28 w-2/3 min-w-28 animate-bounce text-gray-300" />
+      <div className="absolute inset-0 flex h-full w-full items-center justify-center object-cover">
+        <Store className="h-2/3 min-h-28 w-2/3 min-w-28 animate-pulse text-white" />
       </div>
 
-      {/* Overlay escuro para melhor legibilidade */}
       <div className="absolute inset-0 bg-black/20" />
 
-      {/* Conteúdo sobreposto */}
       <div className="absolute right-0 bottom-0 left-0 p-4">
         <div className="flex items-end justify-between gap-4">
           <div className="flex-1">
@@ -31,18 +28,17 @@ export function ProductSkeleton() {
             </div>
           </div>
 
-          {/* Botões de ação */}
           <div className="flex animate-pulse flex-col gap-4">
             <button className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm">
-              <MessageCircle className="h-6 w-full text-white" />
+              <Image className="w-full text-white" />
             </button>
 
             <button className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm">
-              <Share className="h-6 w-full text-white" />
+              <Bookmark className="w-full text-white" />
             </button>
 
             <button className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm">
-              <Bookmark className="h-6 w-full text-white" />
+              <Bookmark className="w-full text-white" />
             </button>
           </div>
         </div>

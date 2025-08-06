@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 
-import { Bookmark, MessageCircle, Share } from "lucide-react";
+import { Bookmark, Image, Plus } from "lucide-react";
 
 import { Information } from "./components/information";
 
@@ -47,14 +47,18 @@ export function Product({
       key={id}
       className="relative flex h-full w-full snap-start snap-always items-center justify-center"
     >
-      {/* Imagem de fundo */}
-      <img
-        src={urlImage || "placeholder.svg"} //todo: fix when not have image
-        alt={name}
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+      {urlImage ? (
+        <img
+          src={urlImage}
+          alt={name}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center object-cover">
+          <Image className="h-2/3 min-h-28 w-2/3 min-w-28 text-white" />
+        </div>
+      )}
 
-      {/* Overlay escuro para melhor legibilidade */}
       <div
         className="absolute inset-0 bg-black/20"
         onClick={() => {
@@ -62,7 +66,6 @@ export function Product({
         }}
       />
 
-      {/* Conteúdo sobreposto */}
       <div className="absolute right-0 bottom-0 left-0 p-4">
         <div className="flex items-end justify-between gap-4">
           <div className="flex-1">
@@ -76,18 +79,33 @@ export function Product({
             />
           </div>
 
-          {/* Botões de ação */}
           <div className="flex flex-col gap-4">
-            <button className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30">
-              <MessageCircle className="h-6 w-full text-white" />
+            {urlImage ? (
+              <div className="relative hover:brightness-95">
+                <img
+                  src={urlImage}
+                  alt={name}
+                  className="size-12 rounded-full bg-white/20 backdrop-blur-sm"
+                />
+                <div className="absolute right-0 -bottom-2 left-0 flex items-center justify-center">
+                  <Plus
+                    strokeWidth={4}
+                    className="size-5 rounded-full bg-red-500/90 p-1 text-white"
+                  />
+                </div>
+              </div>
+            ) : (
+              <button className="size-12 rounded-full bg-white/20 backdrop-blur-sm hover:brightness-95">
+                <Image className="w-full text-white" />
+              </button>
+            )}
+
+            <button className="size-12 rounded-full bg-white/20 backdrop-blur-sm hover:brightness-95">
+              <Bookmark className="w-full text-white" />
             </button>
 
-            <button className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30">
-              <Share className="h-6 w-full text-white" />
-            </button>
-
-            <button className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30">
-              <Bookmark className="h-6 w-full text-white" />
+            <button className="size-12 rounded-full bg-white/20 backdrop-blur-sm hover:brightness-95">
+              <Bookmark className="w-full text-white" />
             </button>
           </div>
         </div>

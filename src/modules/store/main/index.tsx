@@ -65,6 +65,8 @@ export function StoreMain() {
                 name={product.name}
                 description={product.description}
                 urlImage={product.urlImage}
+                category={product.categoryName}
+                price={product.price}
               />
             ))
           )}

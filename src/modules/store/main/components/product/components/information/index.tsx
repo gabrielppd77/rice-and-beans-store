@@ -1,10 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 
-import clsx from "clsx";
-
 interface InformationProps {
   title: string;
   description: string;
+  category: string;
   isOpen: boolean;
   toggleOpen: () => void;
   clampedRef: React.RefObject<HTMLParagraphElement | null>;
@@ -14,6 +13,7 @@ interface InformationProps {
 export function Information({
   title,
   description,
+  category,
   isOpen,
   toggleOpen,
   clampedRef,
@@ -23,19 +23,13 @@ export function Information({
 
   return (
     <div className="text-white">
-      <div
-        className={clsx(
-          "pointer-events-none fixed inset-0 z-10 bg-black/20 transition-opacity duration-300",
-          isOpen ? "opacity-100" : "opacity-0",
-        )}
-      />
+      <h3 className="text-lg font-semibold">{title}</h3>
 
-      <h3 className="mb-1 text-lg font-semibold">{title}</h3>
+      <button className="rounded-xl bg-white/20 px-2 py-1.5 text-sm hover:brightness-95">
+        {category}
+      </button>
 
-      <div
-        className={clsx("text-sm", isOpen ? "text-white/100" : "text-white/80")}
-        onClick={() => toggleOpen()}
-      >
+      <div className="mt-1 text-sm text-white/80" onClick={() => toggleOpen()}>
         <AnimatePresence initial={false}>
           <motion.div
             key={isOpen ? "expanded" : "clamped"}

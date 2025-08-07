@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from "react";
+import clsx from "clsx";
+import { formatToCurrency } from "../../../../utils/currency";
 
-import { Bookmark, Image, Plus } from "lucide-react";
+import { Image, Plus } from "lucide-react";
 
 import { Information } from "./components/information";
 
@@ -10,6 +12,8 @@ interface ProductProps {
   name: string;
   description?: string | null;
   urlImage?: string | null;
+  category: string;
+  price: number;
 }
 
 export function Product({
@@ -18,6 +22,8 @@ export function Product({
   name,
   description,
   urlImage,
+  category,
+  price,
 }: ProductProps) {
   const [isOpenInformation, setOpenInformation] = useState(false);
 
@@ -60,7 +66,10 @@ export function Product({
       )}
 
       <div
-        className="absolute inset-0 bg-black/20"
+        className={clsx(
+          "absolute inset-0 transition-colors duration-300",
+          isOpenInformation ? "bg-black/40" : "bg-black/20",
+        )}
         onClick={() => {
           if (isOpenInformation) handleToggleInformation();
         }}
@@ -72,6 +81,7 @@ export function Product({
             <Information
               title={name}
               description={description || ""}
+              category={category}
               isOpen={isOpenInformation}
               toggleOpen={() => handleToggleInformation()}
               clampedRef={clampedRef}
@@ -100,12 +110,11 @@ export function Product({
               </button>
             )}
 
-            <button className="size-12 rounded-full bg-white/20 backdrop-blur-sm hover:brightness-95">
-              <Bookmark className="w-full text-white" />
-            </button>
-
-            <button className="size-12 rounded-full bg-white/20 backdrop-blur-sm hover:brightness-95">
-              <Bookmark className="w-full text-white" />
+            <button className="text-white">
+              <p className="text-2xl font-extrabold">R$</p>
+              <p className="-mt-1.5 text-xs font-semibold">
+                {formatToCurrency(price)}
+              </p>
             </button>
           </div>
         </div>

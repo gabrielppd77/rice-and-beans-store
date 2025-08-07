@@ -4,5 +4,5 @@ export interface GetStoreProductResponse {
   description?: string | null;
   urlImage?: string | null;
   price: number;
-  categoryName?: string | null;
+  categoryName: string;
 }

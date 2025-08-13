@@ -9,7 +9,7 @@ import { Drawer } from "../../components/drawer";
 
 import { DrawerContent } from "./components/drawer-content";
 
-export function CategoryMain() {
+export function SearchCategory() {
   const [isOpenDrawer, setOpenDrawer] = useState(false);
 
   const { companyPath, productName, categoryName } = useParams<{

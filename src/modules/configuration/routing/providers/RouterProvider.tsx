@@ -4,7 +4,7 @@ import {
 } from "react-router-dom";
 
 import { StoreMain } from "../../../store/main";
-import { CategoryMain } from "../../../category/main";
+import { SearchCategory } from "../../../categories/search-category";
 
 const routes = createBrowserRouter([
   {
@@ -17,11 +17,11 @@ const routes = createBrowserRouter([
   },
   {
     path: ":companyPath/:productName/pesquisar-categoria",
-    element: <CategoryMain />,
+    element: <SearchCategory />,
   },
   {
     path: ":companyPath/:productName/pesquisar-categoria/:categoryName",
-    element: <CategoryMain />,
+    element: <SearchCategory />,
   },
 ]);
 

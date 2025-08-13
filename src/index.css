@@ -1,8 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Poppins", "sans-serif";
+}
+
+@layer base {
+  body {
+    @apply bg-black text-white;
+  }
 }
 
 @theme {
@@ -17,6 +23,32 @@
     }
     100% {
       transform: translateX(100%) scaleX(0.5);
+    }
+  }
+}
+
+@theme {
+  --animate-slideInRight: slideInRight 300ms ease-in-out;
+
+  @keyframes slideInRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
+
+@theme {
+  --animate-slideInLeft: slideInLeft 300ms ease-in-out;
+
+  @keyframes slideInLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
     }
   }
 }

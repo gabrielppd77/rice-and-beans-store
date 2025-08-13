@@ -1,9 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface InformationProps {
   title: string;
   description: string;
-  category: string;
+  categoryName: string;
   isOpen: boolean;
   toggleOpen: () => void;
   clampedRef: React.RefObject<HTMLParagraphElement | null>;
@@ -13,20 +14,30 @@ interface InformationProps {
 export function Information({
   title,
   description,
-  category,
+  categoryName,
   isOpen,
   toggleOpen,
   clampedRef,
   fullRef,
 }: InformationProps) {
+  const navigate = useNavigate();
+  const { companyPath } = useParams<{ companyPath: string }>();
+
   const lineClamp = "line-clamp-2";
 
   return (
-    <div className="text-white">
+    <div>
       <h3 className="text-lg font-semibold">{title}</h3>
 
-      <button className="rounded-xl bg-white/20 px-2 py-1.5 text-sm hover:brightness-95">
-        {category}
+      <button
+        className="rounded-xl bg-white/20 px-2 py-1.5 text-sm hover:brightness-95"
+        onClick={() =>
+          navigate(
+            `/${companyPath}/${title}/pesquisar-categoria/${categoryName}`,
+          )
+        }
+      >
+        {categoryName}
       </button>
 
       <div className="mt-1 text-sm text-white/80" onClick={() => toggleOpen()}>

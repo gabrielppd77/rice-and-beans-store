@@ -24,6 +24,7 @@ export function useGetStoreData({ params }: RequestProps) {
   const result = useQuery({
     queryKey,
     queryFn: handleRequest,
+    staleTime: Infinity,
   });
 
   if (result.error) {

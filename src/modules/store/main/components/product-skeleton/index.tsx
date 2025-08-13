@@ -1,10 +1,10 @@
-import { Bookmark, Image, Store } from "lucide-react";
+import { Image, Store } from "lucide-react";
 
 export function ProductSkeleton() {
   return (
     <div className="relative flex h-full w-full snap-start snap-always items-center justify-center">
       <div className="absolute inset-0 flex h-full w-full items-center justify-center object-cover">
-        <Store className="h-2/3 min-h-28 w-2/3 min-w-28 animate-pulse text-white" />
+        <Store className="h-2/3 min-h-28 w-2/3 min-w-28 animate-pulse" />
       </div>
 
       <div className="absolute inset-0 bg-black/20" />
@@ -30,16 +30,10 @@ export function ProductSkeleton() {
 
           <div className="flex animate-pulse flex-col gap-4">
             <button className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm">
-              <Image className="w-full text-white" />
+              <Image className="w-full" />
             </button>
 
-            <button className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm">
-              <Bookmark className="w-full text-white" />
-            </button>
-
-            <button className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm">
-              <Bookmark className="w-full text-white" />
-            </button>
+            <button className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm" />
           </div>
         </div>
       </div>

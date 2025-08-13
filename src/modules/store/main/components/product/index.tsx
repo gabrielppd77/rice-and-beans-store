@@ -12,7 +12,7 @@ interface ProductProps {
   name: string;
   description?: string | null;
   urlImage?: string | null;
-  category: string;
+  categoryName: string;
   price: number;
 }
 
@@ -22,7 +22,7 @@ export function Product({
   name,
   description,
   urlImage,
-  category,
+  categoryName,
   price,
 }: ProductProps) {
   const [isOpenInformation, setOpenInformation] = useState(false);
@@ -61,7 +61,7 @@ export function Product({
         />
       ) : (
         <div className="absolute inset-0 flex items-center justify-center object-cover">
-          <Image className="h-2/3 min-h-28 w-2/3 min-w-28 text-white" />
+          <Image className="h-2/3 min-h-28 w-2/3 min-w-28" />
         </div>
       )}
 
@@ -81,7 +81,7 @@ export function Product({
             <Information
               title={name}
               description={description || ""}
-              category={category}
+              categoryName={categoryName}
               isOpen={isOpenInformation}
               toggleOpen={() => handleToggleInformation()}
               clampedRef={clampedRef}
@@ -97,20 +97,20 @@ export function Product({
                   alt={name}
                   className="size-12 rounded-full bg-white/20 backdrop-blur-sm"
                 />
-                <div className="absolute right-0 -bottom-2 left-0 flex items-center justify-center">
+                <div className="absolute right-0 -bottom-2.5 left-0 flex items-center justify-center">
                   <Plus
                     strokeWidth={4}
-                    className="size-5 rounded-full bg-red-500/90 p-1 text-white"
+                    className="size-5 rounded-full bg-red-500/90 p-1"
                   />
                 </div>
               </div>
             ) : (
               <button className="size-12 rounded-full bg-white/20 backdrop-blur-sm hover:brightness-95">
-                <Image className="w-full text-white" />
+                <Image className="w-full" />
               </button>
             )}
 
-            <button className="text-white">
+            <button>
               <p className="text-2xl font-extrabold">R$</p>
               <p className="-mt-1.5 text-xs font-semibold">
                 {formatToCurrency(price)}

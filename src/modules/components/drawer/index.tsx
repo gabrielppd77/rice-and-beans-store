@@ -49,7 +49,7 @@ export function Drawer({ isOpen, onChange, content }: DrawerProps) {
 
       <div
         className={clsx(
-          "fixed bottom-0 flex min-h-64 w-full transform flex-col rounded-md bg-white shadow-lg transition-all duration-300",
+          "fixed bottom-0 flex min-h-64 w-full transform flex-col rounded-md bg-gray-950 shadow-lg transition-all duration-300",
           isOpen ? "translate-y-0" : "translate-y-full",
           isShowMore ? "h-[90%]" : "h-2/3",
         )}
@@ -57,12 +57,12 @@ export function Drawer({ isOpen, onChange, content }: DrawerProps) {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <div
+        <button
           className="flex items-center justify-center p-2"
           onClick={() => onChange(false)}
         >
           <div className="h-1 w-8 rounded-lg bg-gray-300" />
-        </div>
+        </button>
 
         <div className="flex-1">{content}</div>
       </div>

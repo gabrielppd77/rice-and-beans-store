@@ -5,23 +5,20 @@ import {
 
 import { StoreMain } from "../../../store/main";
 import { SearchCategory } from "../../../categories/search-category";
+import { SearchProduct } from "../../../products/search-product";
 
 const routes = createBrowserRouter([
   {
-    path: ":companyPath",
+    path: ":companyPath/:productName?",
     element: <StoreMain />,
   },
   {
-    path: ":companyPath/:productName",
-    element: <StoreMain />,
-  },
-  {
-    path: ":companyPath/:productName/pesquisar-categoria",
+    path: ":companyPath/:productName?/pesquisar-categoria",
     element: <SearchCategory />,
   },
   {
-    path: ":companyPath/:productName/pesquisar-categoria/:categoryName",
-    element: <SearchCategory />,
+    path: ":companyPath/:productName?/pesquisar-produto",
+    element: <SearchProduct />,
   },
 ]);
 

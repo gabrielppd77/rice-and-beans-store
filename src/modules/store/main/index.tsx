@@ -2,7 +2,7 @@ import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetStoreData } from "../data/hooks/useGetStoreData";
 
-import { Search, House, User } from "lucide-react";
+import { Search, House, User, ShoppingCart } from "lucide-react";
 
 import { Product } from "./components/product";
 import { ProductSkeleton } from "./components/product-skeleton";
@@ -98,7 +98,7 @@ export function StoreMain() {
               onClick={() => scrollToProduct(0)}
             >
               <img
-                src="rice-and-beans-logo.svg"
+                src="/rice-and-beans-logo.svg"
                 alt="logo rice and beans"
                 className="size-8"
               />
@@ -107,7 +107,7 @@ export function StoreMain() {
 
             <button
               onClick={() =>
-                navigate(`/${companyPath}/${productName}/pesquisar-categoria`)
+                navigate(`/${companyPath}/${productName}/pesquisar-produto`)
               }
             >
               <Search />
@@ -117,22 +117,17 @@ export function StoreMain() {
         </div>
       </div>
 
-      {/* AppControls */}
-      <div className="flex h-16 flex-col">
-        <nav className="flex justify-between border-t-1 border-gray-600 px-2 py-2">
-          <div className="flex flex-col items-center">
-            <House />
-            <p className="text-xs">Início</p>
-          </div>
-          <button className="h-7 w-12 rounded-md bg-white text-xl font-bold text-gray-600">
-            +
-          </button>
-          <div className="flex flex-col items-center">
-            <User />
-            <p className="text-xs">Perfil</p>
-          </div>
-        </nav>
-      </div>
+      <nav className="flex justify-between border-t-1 border-gray-600 px-4 py-3">
+        <button>
+          <User />
+        </button>
+        <button>
+          <House />
+        </button>
+        <button>
+          <ShoppingCart />
+        </button>
+      </nav>
     </main>
   );
 }

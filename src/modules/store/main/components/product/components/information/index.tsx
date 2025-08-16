@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useParams } from "react-router-dom";
+import { paramQueryFieldCategory } from "../../../../../../categories/search-category";
 
 interface InformationProps {
   title: string;
@@ -33,7 +34,7 @@ export function Information({
         className="rounded-xl bg-white/20 px-2 py-1.5 text-sm hover:brightness-95"
         onClick={() =>
           navigate(
-            `/${companyPath}/${title}/pesquisar-categoria/${categoryName}`,
+            `/${companyPath}/${title}/pesquisar-categoria?${paramQueryFieldCategory}=${categoryName}`,
           )
         }
       >

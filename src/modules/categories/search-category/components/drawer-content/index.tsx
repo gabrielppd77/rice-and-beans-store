@@ -32,7 +32,7 @@ export function DrawerContent({
 
   return (
     <div className="p-4 py-2">
-      <h1 className="mb-4 font-medium">Categorias</h1>
+      <h1 className="mb-4 font-medium text-white">Categorias</h1>
       <ul className="flex flex-col gap-2">
         {categories.map((d) => (
           <li
@@ -40,7 +40,7 @@ export function DrawerContent({
             className={clsx(
               "flex justify-between",
               d.category === categoryCurrent
-                ? "font-bold text-black"
+                ? "font-bold text-white"
                 : "text-gray-600",
             )}
             onClick={() =>

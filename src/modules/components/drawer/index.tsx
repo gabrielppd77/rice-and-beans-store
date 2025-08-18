@@ -1,5 +1,3 @@
-import { useRef, useState } from "react";
-
 import clsx from "clsx";
 
 interface DrawerProps {
@@ -9,34 +7,6 @@ interface DrawerProps {
 }
 
 export function Drawer({ isOpen, onChange, content }: DrawerProps) {
-  const [isShowMore, setShowMore] = useState(false);
-
-  const startY = useRef(0);
-  const deltaY = useRef(0);
-
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    startY.current = e.touches[0].clientY;
-    deltaY.current = 0;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    deltaY.current = e.touches[0].clientY - startY.current;
-  };
-
-  const handleTouchEnd = () => {
-    if (deltaY.current > 50) {
-      if (isShowMore) {
-        setShowMore(false);
-      } else {
-        onChange(false);
-      }
-    } else if (deltaY.current < -50) {
-      setShowMore(true);
-    }
-
-    deltaY.current = 0;
-  };
-
   return (
     <div className="text-black">
       <div
@@ -49,13 +19,9 @@ export function Drawer({ isOpen, onChange, content }: DrawerProps) {
 
       <div
         className={clsx(
-          "fixed bottom-0 flex min-h-64 w-full transform flex-col rounded-md bg-gray-950 shadow-lg transition-all duration-300",
+          "fixed bottom-0 flex h-[85%] min-h-64 w-full transform flex-col rounded-md bg-gray-950 shadow-lg transition-all duration-300",
           isOpen ? "translate-y-0" : "translate-y-full",
-          isShowMore ? "h-[90%]" : "h-2/3",
         )}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
       >
         <button
           className="flex items-center justify-center p-2"
@@ -64,7 +30,7 @@ export function Drawer({ isOpen, onChange, content }: DrawerProps) {
           <div className="h-1 w-8 rounded-lg bg-gray-300" />
         </button>
 
-        <div className="flex-1">{content}</div>
+        <div className="scrollbar-hide flex-1 overflow-auto">{content}</div>
       </div>
     </div>
   );

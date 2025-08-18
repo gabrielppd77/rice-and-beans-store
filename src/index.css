@@ -27,32 +27,6 @@
   }
 }
 
-@theme {
-  --animate-slideInRight: slideInRight 300ms ease-in-out;
-
-  @keyframes slideInRight {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-}
-
-@theme {
-  --animate-slideInLeft: slideInLeft 300ms ease-in-out;
-
-  @keyframes slideInLeft {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-}
-
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;

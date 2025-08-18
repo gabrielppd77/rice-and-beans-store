@@ -3,6 +3,7 @@ import api from "../../../configuration/api/api";
 import { fireError } from "../../../configuration/alert/alert";
 
 import type { GetStoreDataResponse } from "../types/GetStoreDataResponse";
+import { useNavigate } from "react-router-dom";
 
 const queryKey = ["/stores/get-store-data"];
 
@@ -13,6 +14,8 @@ interface RequestProps {
 }
 
 export function useGetStoreData({ params }: RequestProps) {
+  const navigate = useNavigate();
+
   async function handleRequest() {
     if (!params.companyPath) return;
     const response = await api.get<GetStoreDataResponse>(queryKey[0], {
@@ -29,6 +32,9 @@ export function useGetStoreData({ params }: RequestProps) {
 
   if (result.error) {
     fireError(result.error);
+    navigate("/", {
+      replace: true,
+    });
   }
 
   return result;

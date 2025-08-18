@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 
 import { useGetStoreData } from "../../store/data/hooks/useGetStoreData";
 
@@ -19,7 +19,6 @@ export function SearchCategory() {
     companyPath: string;
     productName: string;
   }>();
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const queryCategory = searchParams.get(paramQueryFieldCategory);
@@ -35,14 +34,11 @@ export function SearchCategory() {
     : products;
 
   return (
-    <main className="animate-slideInRight flex h-screen w-full flex-col">
+    <main className="flex h-screen w-full flex-col">
       <header className="flex items-center justify-between gap-4 p-3">
-        <button
-          className="absolute"
-          onClick={() => navigate(`/${companyPath}/${productName}`)}
-        >
+        <Link className="absolute" to={`/${companyPath}/${productName}`}>
           <ChevronLeft />
-        </button>
+        </Link>
 
         {isLoading ? (
           <div className="mx-10 flex-1 animate-pulse rounded-sm bg-white/20 py-1.5 pr-2 pl-3">

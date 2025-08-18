@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useGetStoreData } from "../data/hooks/useGetStoreData";
 
 import { Search, House, User, ShoppingCart } from "lucide-react";
@@ -67,7 +67,7 @@ export function StoreMain() {
   }, [products]);
 
   return (
-    <main className="animate-slideInLeft flex h-screen w-full flex-col">
+    <main className="flex h-screen w-full flex-col">
       <div className="relative flex-1 overflow-hidden">
         <div
           ref={containerRef}
@@ -93,9 +93,10 @@ export function StoreMain() {
 
         <div className="absolute top-0 right-0 left-0 flex flex-col">
           <div className="flex items-center justify-between p-3">
-            <div
+            <Link
               className="flex items-center gap-2"
               onClick={() => scrollToProduct(0)}
+              to={`/${companyPath}`}
             >
               <img
                 src="/rice-and-beans-logo.svg"
@@ -103,15 +104,11 @@ export function StoreMain() {
                 className="size-8"
               />
               <h1 className="font-semibold">{data?.name || "Rice & Beans"}</h1>
-            </div>
+            </Link>
 
-            <button
-              onClick={() =>
-                navigate(`/${companyPath}/${productName}/pesquisar-produto`)
-              }
-            >
+            <Link to={`/${companyPath}/${productName}/pesquisar-produto`}>
               <Search />
-            </button>
+            </Link>
           </div>
           <LinearProgress active={isFetching} />
         </div>

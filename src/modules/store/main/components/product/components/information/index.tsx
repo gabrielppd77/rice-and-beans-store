@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { paramQueryFieldCategory } from "../../../../../../categories/search-category";
 
 interface InformationProps {
@@ -21,25 +21,22 @@ export function Information({
   clampedRef,
   fullRef,
 }: InformationProps) {
-  const navigate = useNavigate();
   const { companyPath } = useParams<{ companyPath: string }>();
 
   const lineClamp = "line-clamp-2";
 
   return (
-    <div>
-      <h3 className="text-lg font-semibold">{title}</h3>
+    <div className="flex flex-col gap-1">
+      <h3 className="text-lg font-semibold select-none">{title}</h3>
 
-      <button
-        className="rounded-xl bg-white/20 px-2 py-1.5 text-sm hover:brightness-95"
-        onClick={() =>
-          navigate(
-            `/${companyPath}/${title}/pesquisar-categoria?${paramQueryFieldCategory}=${categoryName}`,
-          )
-        }
-      >
-        {categoryName}
-      </button>
+      <div>
+        <Link
+          className="rounded-xl bg-white/20 px-2 py-1.5 text-sm hover:brightness-95"
+          to={`/${companyPath}/${title}/pesquisar-categoria?${paramQueryFieldCategory}=${categoryName}`}
+        >
+          {categoryName}
+        </Link>
+      </div>
 
       <div className="mt-1 text-sm text-white/80" onClick={() => toggleOpen()}>
         <AnimatePresence initial={false}>

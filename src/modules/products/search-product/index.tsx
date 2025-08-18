@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 
 import { useGetStoreData } from "../../store/data/hooks/useGetStoreData";
 
@@ -29,8 +29,6 @@ export function SearchProduct() {
     companyPath: string;
     productName: string;
   }>();
-
-  const navigate = useNavigate();
 
   const { data, isLoading, isFetching } = useGetStoreData({
     params: { companyPath },
@@ -69,14 +67,11 @@ export function SearchProduct() {
   );
 
   return (
-    <main className="animate-slideInRight flex h-screen w-full flex-col">
+    <main className="flex h-screen w-full flex-col">
       <header className="flex items-center justify-between gap-4 p-3">
-        <button
-          className="absolute"
-          onClick={() => navigate(`/${companyPath}/${productName}`)}
-        >
+        <Link className="absolute" to={`/${companyPath}/${productName}`}>
           <ChevronLeft />
-        </button>
+        </Link>
 
         {isLoading ? (
           <div className="mx-10 flex-1 animate-pulse rounded-sm bg-white/20 py-1.5 pr-2 pl-3">
@@ -117,7 +112,9 @@ export function SearchProduct() {
         <div className="scrollbar-hide flex flex-1 flex-col gap-4 overflow-y-auto px-4 py-1">
           {categoryWithProducts.map((d) => (
             <div key={d.category} className="flex flex-col">
-              <h1 className="mb-3 text-lg font-medium">{d.category}</h1>
+              <h1 className="mb-3 text-lg font-medium select-none">
+                {d.category}
+              </h1>
               <span className="-mx-4 grid grid-cols-3 gap-1">
                 {d.products.map((x) => (
                   <ProductCard key={x.id} name={x.name} urlImage={x.urlImage} />

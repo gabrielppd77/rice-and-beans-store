@@ -4,7 +4,7 @@ import { Link, useParams, useSearchParams } from "react-router-dom";
 
 import { useGetStoreData } from "../../store/data/hooks/useGetStoreData";
 
-import { ChevronLeft, Image } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 
 import { LinearProgress } from "../../components/linear-progress";
 import { ProductCard } from "../../components/product-card";
@@ -86,12 +86,12 @@ export function SearchProduct() {
       <LinearProgress active={isFetching} />
 
       {isLoading ? (
-        <div className="animate-pulse">
+        <div className="mt-1 animate-pulse">
           <h1 className="mx-4 mb-3 w-2/3 min-w-12 rounded-sm bg-white/20 text-lg font-medium">
             <div className="invisible">empty</div>
           </h1>
-          <div className="grid grid-cols-3 gap-1">
-            <Image className="h-44 w-full rounded-sm" />
+          <div className="grid grid-cols-3 gap-1 bg-white/20">
+            <div className="invisible h-44" />
           </div>
         </div>
       ) : productsFiltred.length === 0 ? (
@@ -109,7 +109,7 @@ export function SearchProduct() {
           </div>
         </div>
       ) : (
-        <div className="scrollbar-hide flex flex-1 flex-col gap-4 overflow-y-auto px-4 py-1">
+        <div className="scrollbar-hide mt-1 flex flex-1 flex-col gap-4 overflow-y-auto px-4 py-1">
           {categoryWithProducts.map((d) => (
             <div key={d.category} className="flex flex-col">
               <h1 className="mb-3 text-lg font-medium select-none">

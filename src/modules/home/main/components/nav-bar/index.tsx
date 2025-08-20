@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 
 function PageTitle() {
   return (
-    <Link to="/" className="flex items-center gap-3">
+    <Link to="/" className="flex items-center gap-1">
       <img
         src="rice-and-beans-logo.svg"
         className="h-12"
         alt="rice and beans Logo"
       />
-      <span className="text-base font-medium whitespace-nowrap text-gray-800 sm:text-lg md:text-xl">
+      <span className="text-sm font-medium whitespace-nowrap text-white sm:text-base md:text-lg lg:text-xl">
         Rice & Beans
       </span>
     </Link>

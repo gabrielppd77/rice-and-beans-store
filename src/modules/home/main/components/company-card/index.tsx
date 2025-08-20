@@ -18,7 +18,7 @@ export function CompanyCard({ name, image, onClick }: CompanyCardProps) {
     >
       <Avatar image={image} alt="icone da loja" />
       <div className="flex items-center">
-        <div className="text-md line-clamp-1 font-medium text-gray-700">
+        <div className="text-md line-clamp-1 font-medium text-white">
           {name}
         </div>
       </div>

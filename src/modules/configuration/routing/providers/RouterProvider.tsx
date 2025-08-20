@@ -3,11 +3,16 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 
+import { HomeMain } from "../../../home/main";
 import { StoreMain } from "../../../store/main";
 import { SearchCategory } from "../../../categories/search-category";
 import { SearchProduct } from "../../../products/search-product";
 
 const routes = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomeMain />,
+  },
   {
     path: ":companyPath/:productName?",
     element: <StoreMain />,

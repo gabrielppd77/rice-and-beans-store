@@ -3,6 +3,7 @@
 
 @theme {
   --font-sans: "Poppins", "sans-serif";
+  --height-appbar: 64px;
 }
 
 @layer base {

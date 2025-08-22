@@ -67,7 +67,7 @@ export function SearchProduct() {
   );
 
   return (
-    <main className="flex h-screen w-full flex-col">
+    <main className="flex h-dvh w-full flex-col">
       <header className="flex items-center justify-between gap-4 p-3">
         <Link className="absolute" to={`/${companyPath}/${productName}`}>
           <ChevronLeft />

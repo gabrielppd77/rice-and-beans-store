@@ -6,6 +6,8 @@ import { Search, House, User, ShoppingCart } from "lucide-react";
 
 import { Product } from "./components/product";
 import { ProductSkeleton } from "./components/product-skeleton";
+import { PositionIndicator } from "./components/position-indicator";
+import { NavControls } from "./components/nav-controls";
 
 import { LinearProgress } from "../../components/linear-progress";
 
@@ -25,15 +27,11 @@ export function StoreMain() {
 
   const products = useMemo(() => data?.products || [], [data]);
 
-  const scrollToProduct = (index: number) => {
-    if (containerRef.current) {
-      const itemHeight = containerRef.current.clientHeight;
-      containerRef.current.scrollTo({
-        top: index * itemHeight,
-        behavior: "smooth",
-      });
-    }
-  };
+  const categories = [...new Set(products.map((p) => p.categoryName))];
+
+  const indexCategory = categories.findIndex(
+    (x) => x === products[currentIndex].categoryName,
+  );
 
   const handleScroll = useCallback(() => {
     if (containerRef.current) {
@@ -66,8 +64,27 @@ export function StoreMain() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [products]);
 
+  const scrollToProduct = (index: number) => {
+    if (containerRef.current) {
+      const itemHeight = containerRef.current.clientHeight;
+      containerRef.current.scrollTo({
+        top: index * itemHeight,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  function handleScrollToCategory(categoryIndex: number) {
+    const index = products.findIndex(
+      (x) => x.categoryName === categories[categoryIndex],
+    );
+    if (index >= 0) {
+      scrollToProduct(index);
+    }
+  }
+
   return (
-    <main className="flex h-screen w-full flex-col">
+    <main className="flex h-dvh w-full flex-col">
       <div className="relative flex-1 overflow-hidden">
         <div
           ref={containerRef}
@@ -103,7 +120,7 @@ export function StoreMain() {
                 alt="logo rice and beans"
                 className="size-8"
               />
-              <h1 className="font-semibold">{data?.name || "Rice & Beans"}</h1>
+              <h1 className="font-medium">{data?.name || "Rice & Beans"}</h1>
             </Link>
 
             <Link to={`/${companyPath}/${productName}/pesquisar-produto`}>
@@ -112,6 +129,18 @@ export function StoreMain() {
           </div>
           <LinearProgress active={isFetching} />
         </div>
+
+        <PositionIndicator
+          currentIndex={indexCategory}
+          listCount={categories.length}
+          onClick={handleScrollToCategory}
+        />
+
+        <NavControls
+          currentIndex={indexCategory}
+          listCount={categories.length}
+          onClick={handleScrollToCategory}
+        />
       </div>
 
       <nav className="flex justify-between border-t-1 border-gray-600 px-4 py-3">
